@@ -23,6 +23,7 @@ namespace CalculatorWinForms
         string _operator;
         float result;
 
+        //Ввод и отображение нажатой цифры
         private void number_Click(object sender, EventArgs e)
         {
             Button button = (Button)sender;
@@ -32,7 +33,8 @@ namespace CalculatorWinForms
             }
             textBox_result.Text = textBox_result.Text + button.Text;
         }
-
+        
+        //Ввод и отображение нажатого оператора
         private void operator_Click(object sender, EventArgs e)
         {
             if (textBox_result.Text != string.Empty)
@@ -44,7 +46,8 @@ namespace CalculatorWinForms
                 textBox_result.Clear();
             }
         }
-
+        
+        //Высчитывание и отображение результата
         private void equal_Click(object sender, EventArgs e)
         {
             if(textBox_result.Text != string.Empty)
@@ -54,13 +57,15 @@ namespace CalculatorWinForms
                 textBox_result.Text = result.ToString();
             }
         }
-
+        
+        //Обнуление введённых данных
         private void clear_Click(object sender, EventArgs e)
         {
             label_result.ResetText();
             textBox_result.Text = "0";
         }
-
+        
+        //Выссчитывание ответа
         private void Calculate()
         {
             if (_operator == "+")
@@ -74,7 +79,8 @@ namespace CalculatorWinForms
             else
                 result = 0;
         }
-
+        
+        //Вводит и отображает - перед следующим введённым числом
         private void negative_Click(object sender, EventArgs e)
         {
             if (textBox_result.Text != string.Empty && textBox_result.Text != ",")
@@ -84,7 +90,8 @@ namespace CalculatorWinForms
                 textBox_result.Text = negNum.ToString();
             }
         }
-
+        
+        //Удаление введённого числа
         private void delete_Click(object sender, EventArgs e)
         {
             if (textBox_result.Text.Length > 1) 
@@ -97,7 +104,8 @@ namespace CalculatorWinForms
                 textBox_result.Text = "0";
             }
         }
-
+        
+        //Ввод и отображение запятой
         private void comma_Click(object sender, EventArgs e)
         {
             int i = 0;
