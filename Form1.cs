@@ -33,7 +33,7 @@ namespace CalculatorWinForms
             }
             textBox_result.Text = textBox_result.Text + button.Text;
         }
-        
+
         //Ввод и отображение нажатого оператора
         private void operator_Click(object sender, EventArgs e)
         {
@@ -46,25 +46,25 @@ namespace CalculatorWinForms
                 textBox_result.Clear();
             }
         }
-        
+
         //Высчитывание и отображение результата
         private void equal_Click(object sender, EventArgs e)
         {
-            if(textBox_result.Text != string.Empty)
+            if (textBox_result.Text != string.Empty)
             {
                 Calculate();
                 label_result.ResetText();
                 textBox_result.Text = result.ToString();
             }
         }
-        
+
         //Обнуление введённых данных
         private void clear_Click(object sender, EventArgs e)
         {
             label_result.ResetText();
             textBox_result.Text = "0";
         }
-        
+
         //Выссчитывание ответа
         private void Calculate()
         {
@@ -79,7 +79,7 @@ namespace CalculatorWinForms
             else
                 result = 0;
         }
-        
+
         //Вводит и отображает - перед следующим введённым числом
         private void negative_Click(object sender, EventArgs e)
         {
@@ -90,11 +90,11 @@ namespace CalculatorWinForms
                 textBox_result.Text = negNum.ToString();
             }
         }
-        
+
         //Удаление введённого числа
         private void delete_Click(object sender, EventArgs e)
         {
-            if (textBox_result.Text.Length > 1) 
+            if (textBox_result.Text.Length > 1)
             {
                 string result = textBox_result.Text.Substring(0, textBox_result.Text.Length - 1);
                 textBox_result.Text = result;
@@ -104,7 +104,7 @@ namespace CalculatorWinForms
                 textBox_result.Text = "0";
             }
         }
-        
+
         //Ввод и отображение запятой
         private void comma_Click(object sender, EventArgs e)
         {
@@ -113,16 +113,28 @@ namespace CalculatorWinForms
             bool commaExist = false;
             char[] chars = textBox_result.Text.ToCharArray();
             Button button = (Button)sender;
-            while(i < length)
+            while (i < length)
             {
-               if(chars[i] == ',')
-               {
+                if (chars[i] == ',')
+                {
                     commaExist = true;
-               }
+                }
                 i++;
             }
-            if(commaExist == false)
+            if (commaExist == false)
                 textBox_result.Text = textBox_result.Text + button.Text;
+        }
+
+        //Валидация входящих параметров
+        private void textBox_result_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char number = e.KeyChar;
+
+            //Если введённое значение НЕ число, то с помощью свойства Handled его ввод блокируется
+            if (!Char.IsDigit(number))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

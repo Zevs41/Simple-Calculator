@@ -322,6 +322,7 @@ namespace CalculatorWinForms
             this.textBox_result.TabIndex = 20;
             this.textBox_result.Text = "0";
             this.textBox_result.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBox_result.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_result_KeyPress);
             // 
             // label_result
             // 
